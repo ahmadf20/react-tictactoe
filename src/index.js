@@ -4,9 +4,15 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
+import { MdClose } from "react-icons/md";
+import { BiCircle } from "react-icons/bi";
+import { IconContext } from "react-icons";
+
 
 
 function Square(props) {
+
+
     return (
         <button
             className={`square 
@@ -14,7 +20,12 @@ function Square(props) {
                 ${props.isHighlighted && 'highlighted'}`}
             onClick={props.onClick}
         >
-            {props.value}
+            <IconContext.Provider value={{ color: `${props.value === 'X' ? "blue" : "red"}`, size: "2em" }}>
+                {props.value === 'X' ? <MdClose />
+                    : props.value === 'O' ? <BiCircle />
+                        : null}
+            </IconContext.Provider>
+
         </button>
     );
 }
